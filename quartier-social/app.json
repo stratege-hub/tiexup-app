@@ -1,0 +1,95 @@
+{
+  "expo": {
+    "name": "TiexUp",
+    "slug": "tiexup",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1976d2"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tiexup.app",
+      "icon": "./assets/icon.png",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Cette application utilise l'appareil photo pour partager des images dans vos publications et alertes.",
+        "NSPhotoLibraryUsageDescription": "Cette application accède à votre photothèque pour partager des images dans vos publications.",
+        "NSLocationWhenInUseUsageDescription": "Cette application utilise votre localisation pour les alertes de sécurité et les publications géolocalisées.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Cette application utilise votre localisation pour les alertes de sécurité et les publications géolocalisées.",
+        "NSMicrophoneUsageDescription": "Cette application utilise le microphone pour enregistrer des messages vocaux dans vos alertes.",
+        "NSUserNotificationsUsageDescription": "Cette application envoie des notifications pour vous informer des alertes de sécurité dans votre quartier."
+      }
+    },
+    "android": {
+      "package": "com.tiexup.app",
+      "icon": "./assets/icon.png",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1976d2"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.VIBRATE",
+        "android.permission.WAKE_LOCK",
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "color": "#ffffff",
+          "defaultChannel": "default"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Cette application utilise la localisation pour les alertes de sécurité et les publications géolocalisées.",
+          "locationAlwaysPermission": "Cette application utilise la localisation pour les alertes de sécurité et les publications géolocalisées.",
+          "locationWhenInUsePermission": "Cette application utilise la localisation pour les alertes de sécurité et les publications géolocalisées.",
+          "isAndroidBackgroundLocationEnabled": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Cette application accède à vos photos pour partager des images dans vos publications et alertes.",
+          "cameraPermission": "Cette application utilise l'appareil photo pour partager des images dans vos publications et alertes."
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Cette application utilise le microphone pour enregistrer des messages vocaux dans vos alertes."
+        }
+      ]
+    ],
+    "notification": {
+      "color": "#ffffff",
+      "androidMode": "default",
+      "androidCollapsedTitle": "#{unread_notifications} nouvelles alertes"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d0544c51-f2b7-4bc6-800b-eb8c6c1bf07a"
+      }
+    }
+  }
+}
