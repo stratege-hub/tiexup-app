@@ -39,6 +39,7 @@ import { NotificationProvider } from './contexts/NotificationContext';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import { checkMaintenanceMode } from './services/adminService';
+import { authPersistenceService } from './services/authPersistenceService';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -166,11 +167,19 @@ export default function App() {
   const [user, setUser] = React.useState(null);
   const [maintenanceMode, setMaintenanceMode] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
+  const [authLoading, setAuthLoading] = React.useState(true);
   const [permissionsGranted, setPermissionsGranted] = React.useState(false);
 
   React.useEffect(() => {
+    console.log('🔐 Initialisation de l\'authentification avec persistance AsyncStorage...');
+    
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      console.log('🔐 État d\'authentification changé:', user ? 'Connecté' : 'Déconnecté');
       setUser(user);
+      setAuthLoading(false);
+      
+      // Sauvegarder l'état d'authentification
+      await authPersistenceService.saveAuthState(user);
       
       // Demander les permissions au démarrage
       if (user) {
@@ -213,12 +222,14 @@ export default function App() {
     return unsubscribe;
   }, []);
 
-  if (loading) {
+  if (loading || authLoading) {
     return (
       <View style={styles.container}>
         <ActivityIndicator size="large" color="#1976d2" />
-        <Text style={styles.loadingText}>Chargement...</Text>
-        {user && (
+        <Text style={styles.loadingText}>
+          {authLoading ? 'Vérification de la connexion...' : 'Chargement...'}
+        </Text>
+        {user && !authLoading && (
           <Text style={styles.permissionText}>
             Demande des permissions nécessaires...
           </Text>

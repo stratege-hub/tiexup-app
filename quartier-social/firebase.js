@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app'; 
-import { getAuth } from 'firebase/auth'; 
-import { getFirestore } from 'firebase/firestore'; 
+import { initializeAuth, getReactNativePersistence } from 'firebase/auth'; 
+import { getFirestore } from 'firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
  
 // Configuration Firebase - TiexUp (EAS Build Compatible) 
 const firebaseConfig = { 
@@ -19,10 +20,17 @@ let db;
  
 try { 
   app = initializeApp(firebaseConfig); 
-  auth = getAuth(app); 
-  db = getFirestore(app); 
+  
+  // Initialiser Auth avec persistance AsyncStorage
+  auth = initializeAuth(app, {
+    persistence: getReactNativePersistence(AsyncStorage)
+  });
+  
+  db = getFirestore(app);
+  
+  console.log('✅ Firebase initialisé avec persistance AsyncStorage');
 } catch (error) { 
-  console.error('Firebase init error:', error); 
+  console.error('❌ Erreur lors de l\'initialisation Firebase:', error); 
   throw error; 
 } 
  

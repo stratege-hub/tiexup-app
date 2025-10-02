@@ -1,7 +1,7 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
-
-# dependencies
+# Dependencies
 node_modules/
+.npm
+.yarn/
 
 # Expo
 .expo/
@@ -17,26 +17,53 @@ expo-env.d.ts
 *.p12
 *.key
 *.mobileprovision
+*.keystore
 
 # Metro
 .metro-health-check*
 
-# debug
+# Debug
 npm-debug.*
 yarn-debug.*
 yarn-error.*
+*.log
 
 # macOS
 .DS_Store
 *.pem
 
-# local env files
-.env*.local
-.env
+# Environment variables (CRITICAL - Never commit)
+.env*
+!.env.example
 
-# typescript
+# Security & Development files (Should not be in production APK)
+README.md
+*.md
+!package.json
+firestore.rules
+*.rules
+*.bat
+*.sh
+generate-*.js
+build-*.js
+test-*.js
+setup-*.js
+final-*.js
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Typescript
 *.tsbuildinfo
 
-# generated native folders
+# Generated native folders
 /ios
 /android
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

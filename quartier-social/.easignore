@@ -1,0 +1,68 @@
+# EAS Build ignore file - Fichiers à exclure du build
+# Ces fichiers ne seront pas inclus dans l'APK final
+
+# Documentation et fichiers de développement
+README.md
+*.md
+CHANGELOG.md
+CONTRIBUTING.md
+LICENSE
+LICENSE.txt
+
+# Scripts de développement
+*.bat
+*.sh
+generate-*.js
+build-*.js
+test-*.js
+setup-*.js
+final-*.js
+
+# Fichiers de configuration de développement
+firestore.rules
+*.rules
+.eslintrc.*
+.prettierrc.*
+jest.config.*
+babel.config.dev.js
+
+# Fichiers de sécurité (ne doivent JAMAIS être dans l'APK)
+*.keystore
+*.jks
+*.p12
+*.key
+*.pem
+*.crt
+*.cer
+google-services.json
+GoogleService-Info.plist
+
+# Variables d'environnement
+.env*
+!.env.example
+
+# Dossiers de développement
+docs/
+documentation/
+examples/
+tests/
+__tests__/
+.github/
+.vscode/
+.idea/
+
+# Fichiers temporaires
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache
+.cache/
+.metro-health-check*
